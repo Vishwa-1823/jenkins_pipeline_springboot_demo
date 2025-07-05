@@ -13,13 +13,13 @@ pipeline {
         stage('Build'){
             steps{
                 echo 'Building Maven project'
-                ssh 'mvn clean compile'
+                sh 'mvn clean compile'
             }
         }
         stage('Test'){
             steps{
                 echo 'Building Maven project'
-                ssh 'mvn test'
+                sh 'mvn test'
                 junit '**/target/surefire-reports/*.xml'
                 jacoco classPattern: '**/target/classes', exclusionPattern: '**/*Test*.class', execPattern: '**/target/jacoco.exec', inclusionPattern: '**/*.class', sourceExclusionPattern: 'generated/**/*.java', sourceInclusionPattern: '**/*.java'
             }
